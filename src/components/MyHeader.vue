@@ -1,6 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark" style="height: 100px">
     <slot></slot>
+    <img src="../../static/logo1.png" class="img-fluid">
   </nav>
 </template>
 
@@ -13,44 +14,24 @@
 <style scoped>
 
   .navbar {
-    font-family: "Ubuntu Mono";
-  }
-  .navbar-light .navbar-nav .nav-link {
-    color: #ffffff;
+    border-top: 5px solid #101021;
+    box-shadow: 0 0 0 15px #101021;
   }
 
-  .navbar-light a {
-    color: #ffffff;
+  .sticky-top {
+    background-color: #22253b;
+
   }
 
-  .navbar li {
-    margin: 15px 40px 0 0;
+  .bg-custom {
+    background-color: #101021;
+    height: 100px;
   }
-
-  .navbar-brand {
-    margin: 15px 100px 0 0;
+  .img-fluid {
+    max-width: 100%;
+    width: 100px;
+    height: 70px;
+    margin-right: 5px;
   }
-  .navbar-light .navbar-nav .nav-link a:hover {
-    color: black;
-  }
-  .dropdown-menu {
-    padding: 0;
-    min-width: 1rem;
-    max-width: 3rem;
-    background-color: #007bff;
-    border: 1px solid white;
-  }
-
-  .dropdown-item {
-    padding: .15rem .75rem;
-    font-size: 15px;
-    text-align: left;
-  }
-
-  .dropdown-menu a:hover {
-    background-color: transparent;
-    border: 1px solid white;
-  }
-
 
 </style>
