@@ -1,16 +1,23 @@
 <template>
   <div class="login-bg" style="background-image: url(../../static/back.png);">
-    <div class="top-content">
-      <p>Bet In Foot</p>
-    </div>
     <div class="login-wrapper">
       <form>
-        <h1>Faça seu login</h1>
-        <p>Entre e faça sua aposta!</p>
-        <input type="email" class="input" placeholder="email">
-        <input type="password" class="input" placeholder="senha">
-        <a href="#">Cadastre-se</a>
-        <button class="input button-primary">Entrar</button>
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>Faça seu login</h1>
+          </div>
+          <div class="col-sm-12">
+            <p>Entre e faça sua aposta!</p>
+          </div>
+          <div class="col-sm-12 input-group btn-right">
+            <input type="email" class="input" placeholder="email">
+            <input type="password" class="input" placeholder="senha">
+            <a @click.stop.prevent="changeComponent" href="#">Cadastre-se</a>
+            <span class="text-center float-right">
+                            <button class="input button-primary">Entrar</button>
+                        </span>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -18,15 +25,16 @@
 
 <script>
     export default {
-        name: "FormLogin"
+        name: "FormLogin",
+        methods: {
+            changeComponent() {
+                return this.$store.commit('changeToRegister')
+            }
+        }
     }
 </script>
 
 <style scoped>
-
-  .top-content {
-
-  }
 
   .top-content p {
     color: white;
@@ -41,7 +49,9 @@
     width: 400px;
     height: 400px;
     padding: 40px;
-    background: #22253b;
+    /*background: #22253b;*/
+    background: rgba(34, 37, 59, 0.8);
+    border-radius: 10px;
   }
 
   .login-wrapper h1 {
@@ -51,7 +61,7 @@
 
   .login-wrapper p {
     font: 400 0.9rem "Roboto", sans-serif;
-    color: #20ff11;
+    color: #fdfff1;
     margin-bottom: 40px;
     margin-top: 15px;
   }
@@ -69,11 +79,13 @@
   }
 
   .button-primary {
-    float: right;
     width: auto;
-    font: 800 1rem "Roboto", sans-serif;
-    text-transform: uppercase;
-    margin-top: 15px;
+    margin-top: 30px;
+    background: rgb(210, 236, 255);
+    color: black;
   }
 
+  .btn-right {
+    display: block;
+  }
 </style>

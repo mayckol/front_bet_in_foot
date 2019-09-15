@@ -16,6 +16,10 @@
   .navbar {
     border-top: 5px solid #101021;
     box-shadow: 0 0 0 15px #101021;
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    /*right: 0;*/
+    /*width: 100%;*/
   }
 
   .sticky-top {
