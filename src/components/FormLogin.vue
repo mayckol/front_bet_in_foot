@@ -10,12 +10,12 @@
             <p>Entre e faça sua aposta!</p>
           </div>
           <div class="col-sm-12 input-group btn-right">
-            <input type="email" class="input" placeholder="email">
-            <input type="password" class="input" placeholder="senha">
+            <input v-model="email" type="email" class="input" placeholder="email">
+            <input v-model="password" type="password" class="input" placeholder="senha">
             <a @click.stop.prevent="changeComponent" href="#">Cadastre-se</a>
             <span class="text-center float-right">
-                            <button class="input button-primary">Entrar</button>
-                        </span>
+                  <button type="submit" @click.stop.prevent="submitLogin" class="input button-primary">Entrar</button>
+            </span>
           </div>
         </div>
       </form>
@@ -24,12 +24,29 @@
 </template>
 
 <script>
+
     export default {
         name: "FormLogin",
+        data () {
+            return {
+                email: '',
+                password: '',
+            }
+        },
         methods: {
             changeComponent() {
                 return this.$store.commit('changeToRegister')
+            },
+            submitLogin() {
+                const formData = {
+                    'email': this.email,
+                    'password': this.password
+                }
+                this.$api.post('login', formData)
+                    .then(res => console.log(res))
+                    .catch(error => console.log(error));
             }
+
         }
     }
 </script>
