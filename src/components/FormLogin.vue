@@ -14,7 +14,7 @@
             <input v-model="password" type="password" class="input" placeholder="senha">
             <a @click.stop.prevent="changeComponent" href="#">Cadastre-se</a>
             <span class="text-center float-right">
-                  <button type="submit" @click.stop.prevent="submitLogin" class="input button-primary">Entrar</button>
+                  <button @click.stop.prevent="login" type="submit" class="input button-primary">Entrar</button>
             </span>
           </div>
         </div>
@@ -37,14 +37,20 @@
             changeComponent() {
                 return this.$store.commit('changeToRegister')
             },
-            submitLogin() {
-                const formData = {
-                    'email': this.email,
-                    'password': this.password
-                }
-                this.$api.post('login', formData)
-                    .then(res => console.log(res))
-                    .catch(error => console.log(error));
+            login() {
+                this.$store.dispatch('retrieveToken', {
+                    username: this.email,
+                    password: this.password,
+                }).then(response => {
+                    this.$router.push({ name: 'Main' })
+                })
+                // const formData = {
+                //     'email': this.email,
+                //     'password': this.password
+                // }
+                // this.$api.post('login', formData)
+                //     .then(res => console.log(res))
+                //     .catch(error => console.log(error));
             }
 
         }
