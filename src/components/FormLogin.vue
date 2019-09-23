@@ -44,13 +44,6 @@
                 }).then(response => {
                     this.$router.push({ name: 'Main' })
                 })
-                // const formData = {
-                //     'email': this.email,
-                //     'password': this.password
-                // }
-                // this.$api.post('login', formData)
-                //     .then(res => console.log(res))
-                //     .catch(error => console.log(error));
             }
 
         }
@@ -72,8 +65,7 @@
     width: 400px;
     height: 400px;
     padding: 40px;
-    /*background: #22253b;*/
-    background: rgba(34, 37, 59, 0.8);
+    background: rgba(0, 16, 3, 0.8);
     border-radius: 10px;
   }
 

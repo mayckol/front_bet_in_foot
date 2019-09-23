@@ -9,6 +9,7 @@ export const store = new Vuex.Store({
     state: {
         selectedComponent: 'FormLogin',
         token: localStorage.getItem('access_token') || null,
+        todos: [],
     },
     getters: {
         loggedIn(state) {
@@ -24,6 +25,12 @@ export const store = new Vuex.Store({
         ],
         retrieveToken(state, token) {
             state.token = token
+        },
+        destroyToken(state) {
+            state.token = null
+        },
+        clearTodos(state) {
+            state.todos = []
         },
     },
     actions: {
@@ -47,7 +54,9 @@ export const store = new Vuex.Store({
                 })
             }
         },
-
+        clearTodos(context) {
+            context.commit('clearTodos')
+        },
         retrieveToken(context, credentials) {
             return new Promise((resolve, reject) => {
                 axios.post('/login', {

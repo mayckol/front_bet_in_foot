@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark" style="height: 100px">
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-custom" style="height: 100px">
     <slot></slot>
     <img src="../../static/logo1.png" class="img-fluid">
   </nav>
@@ -14,8 +14,8 @@
 <style scoped>
 
   .navbar {
-    border-top: 5px solid #101021;
-    box-shadow: 0 0 0 15px #101021;
+    border-top: 3px solid #142113;
+    box-shadow: 0 0 0 15px #142113;
     /*position: fixed;*/
     /*bottom: 0;*/
     /*right: 0;*/
@@ -24,11 +24,10 @@
 
   .sticky-top {
     background-color: #22253b;
-
   }
 
   .bg-custom {
-    background-color: #101021;
+    background-color: #001003;
     height: 100px;
   }
   .img-fluid {

@@ -23,7 +23,7 @@
             bancária.
         </p>
         <div class="text-center">
-            <img src="../../static/cifrao.png" class="img-fluid">
+            <img src="../../static/cif.jpg" class="img-fluid rounded 5px">
         </div>
     </div>
 </template>
@@ -39,22 +39,38 @@
     .font {
         font-size: 40px;
         text-align: center;
+        background-color: #041508;
+        color: white;
+    }
+
+    .img-fluid {
+        max-width: 450px;
+        max-height: 450px;
+        margin-bottom: 50px;
     }
 
     h1 {
         margin-bottom: 40px;
-        background-color: #e2e2e2;
+        background-color: #041508;
         border-radius: 5px;
         min-height: 100px;
-        padding-top: 30px;
+        padding-top: 25px;
+        color: white;
     }
 
     p {
         text-align: left;
+        color: white;
     }
+
     .container {
-        background-color: #fafafa;
+        background-color: #001003;
         margin-bottom: 150px;
+        margin-top: 150px;
         padding-top: 10px;
+        border: 1px solid white;
+        border-radius: 10px;
+        opacity: 0.3%;
     }
+
 </style>

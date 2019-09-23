@@ -16,6 +16,7 @@
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
         font-family: "Ubuntu Light", sans-serif;
+        background-color: #000c06;
     }
 
     @keyframes fadeInAnimation {

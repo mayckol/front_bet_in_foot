@@ -10,7 +10,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                         <a class="navbar-dark" href="#">
-                            <img src="../../static/logo5.png" width="170" height="50" alt="" style="margin-right: 50px">
+                            <img src="../../../static/logo5.png" width="170" height="50" alt="" style="margin-right: 50px">
                         </a>
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item">
@@ -45,12 +45,12 @@
 </template>
 
 <script>
-    import MyHeader from "../components/MyHeader"
-    import FormLogin from "../components/FormLogin";
-    import WhoAreWe from "../components/WhoAreWe";
-    import HowToBet from "../components/HowToBet"
-    import MyFooter from "../components/MyFooter"
-    import Register from "../components/Register"
+    import MyHeader from "../MyHeader"
+    import FormLogin from "../FormLogin";
+    import WhoAreWe from "../WhoAreWe";
+    import HowToBet from "../HowToBet"
+    import MyFooter from "../MyFooter"
+    import Register from "./Register"
 
     export default {
         name: "Login",

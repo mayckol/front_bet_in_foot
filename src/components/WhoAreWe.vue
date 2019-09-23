@@ -27,6 +27,8 @@
     .font {
         font-size: 40px;
         text-align: center;
+        background-color: #041508;
+        color: white;
     }
 
     h1 {
@@ -39,13 +41,17 @@
 
     p {
         text-align: left;
+        color: white;
     }
 
     .container {
-        background-color: #fafafa;
+        background-color: #001003;
         margin-bottom: 150px;
         margin-top: 150px;
         padding-top: 10px;
+        border: 1px solid white;
+        border-radius: 10px;
+        opacity: 0.3%;
     }
 
 </style>

@@ -1,8 +1,8 @@
 <template>
-    <div class="login-bg" style="background-image: url(../../static/back.png);">
+    <div class="login-bg" style="background-image: url(../../../static/back.png);">
         <div class="login-wrapper">
             <div class="row">
-                <form>
+                <form action="#" @submit.stop.prevent="register">
                     <div class="col-sm-12">
                         <h1 class="mb-5">Cadastre-se</h1>
                     </div>
@@ -10,11 +10,11 @@
                         <h5 class="mb-4">O que está esperando ?</h5>
                     </div>
                     <div class="col-sm-12 input-group btn-right">
-                        <input type="text" class="input" placeholder="nome">
-                        <input type="email" class="input" placeholder="email">
-                        <input type="text" class="input" placeholder="data de nascimento">
-                        <input type="password" class="input" placeholder="senha">
-                        <input type="password" class="input" placeholder="confirme sua senha">
+                        <input v-model="name" type="text" class="input" placeholder="nome">
+                        <input v-model="email" type="email" class="input" placeholder="email">
+                        <input v-model="birthDate" type="text" class="input" placeholder="data de nascimento">
+                        <input v-model="password" type="password" class="input" placeholder="senha">
+                        <input v-model="confirmPassword" type="password" class="input" placeholder="confirme sua senha">
                         <a @click.stop.prevent="changeComponent" href="#" style="font-size: 20px">Já sou cadastrado</a>
                     </div>
                     <p style="color: white">
@@ -23,7 +23,7 @@
                     </p>
                     <div class="col-sm-12">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input v-model="checkboxes" type="checkbox" value="isAdult" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Declaro ser maior de 18 anos.</label>
                         </div>
                     </div>
@@ -41,9 +41,31 @@
 <script>
     export default {
         name: "Register",
+        data() {
+            return {
+                name: '',
+                email: '',
+                birthDate: '',
+                password: '',
+                confirmPassword: '',
+                checkboxes: []
+            }
+        },
         methods: {
             changeComponent() {
                 return this.$store.commit('changeToLogin')
+            },
+            register() {
+                this.$store.dispatch('register', {
+                    name: this.name,
+                    email: this.email,
+                    birthDate: this.birthDate,
+                    password: this.password,
+                    confirmPassword: this.confirmPassword,
+                    checkboxes: [],
+                }).then(response => {
+                    this.$router.push({ name: 'Main' })
+                })
             }
         }
     }
@@ -61,7 +83,7 @@
     .login-wrapper {
         display: block;
         padding: 40px;
-        background: #22253b;
+        background: rgba(0, 16, 3, 0.8);
         opacity: 0.7;
         border-radius: 10px;
         max-width: 600px;
