@@ -43,6 +43,7 @@
                     password: this.password,
                 }).then(response => {
                     this.$router.push({ name: 'Main' })
+                    console.log(response)
                 })
             }
 
