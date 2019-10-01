@@ -10,7 +10,7 @@
             <p>Entre e faça sua aposta!</p>
           </div>
           <div class="col-sm-12 input-group btn-right">
-            <input v-model="email" type="email" class="input" placeholder="email">
+            <input v-model="username" type="email" class="input" placeholder="email">
             <input v-model="password" type="password" class="input" placeholder="senha">
             <a @click.stop.prevent="changeComponent" href="#">Cadastre-se</a>
             <span class="text-center float-right">
@@ -29,7 +29,7 @@
         name: "FormLogin",
         data () {
             return {
-                email: '',
+                username: '',
                 password: '',
             }
         },
@@ -39,11 +39,15 @@
             },
             login() {
                 this.$store.dispatch('retrieveToken', {
-                    username: this.email,
+                    username: this.username,
                     password: this.password,
                 }).then(response => {
                     this.$router.push({ name: 'Main' })
-                    console.log(response)
+                }).catch(error => {
+                    console.log(error)
+                    this.serverError = error.response.data
+                    this.password = ''
+                    this.successMessage = ''
                 })
             }
 

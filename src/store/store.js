@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 Vue.use(Vuex)
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
+axios.defaults.baseURL = 'http://www.betinfoot.com/api';
 
 export const store = new Vuex.Store({
     state: {
@@ -64,8 +64,7 @@ export const store = new Vuex.Store({
                     password: credentials.password,
                 })
                     .then(response => {
-                        const token = response.data.success.token
-
+                        const token = response.data.access_token
                         localStorage.setItem('access_token', token)
                         context.commit('retrieveToken', token)
                         resolve(response)
