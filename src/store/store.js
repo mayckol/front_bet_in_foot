@@ -9,11 +9,27 @@ export const store = new Vuex.Store({
     state: {
         selectedComponent: 'FormLogin',
         token: localStorage.getItem('access_token') || null,
-        todos: [],
+        favoriteTeam: '',
+        filter: 'all',
+        userData: {},
+        teams: [],
     },
     getters: {
         loggedIn(state) {
             return state.token !== null
+        },
+        teamsFiltered(state) {
+          if (state.filter === 'all') {
+            return state.teams
+          } /*else if (state.filter == 'active') {
+            return state.teams.filter(todo => !team.completed)
+          } else if (state.filter == 'completed') {
+            return state.teams.filter(team => team.completed)
+          }*/
+          return state.teams
+        },
+        favoriteTeam(state){
+          return state.userData
         }
     },
     mutations: {
@@ -31,6 +47,16 @@ export const store = new Vuex.Store({
         },
         clearTodos(state) {
             state.todos = []
+        },
+        changeFavoriteTeam(state, team){
+            state.favoriteTeam = team
+        },
+        getTeams(state, teams) {
+          state.teams = teams
+        },
+        getUserData(state, userData) {
+          state.userData = userData
+          state.favoriteTeam = userData.team_id
         },
     },
     actions: {
@@ -85,6 +111,46 @@ export const store = new Vuex.Store({
                 })
                     .then(response => {
                         resolve(response)
+                    })
+                    .catch(error => {
+                        reject(error)
+                    })
+            })
+        },
+
+        getTeams(context) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+
+          axios.get('/teams')
+            .then(response => {
+              context.commit('getTeams', response.data)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+        },
+
+        getUserData(context) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+
+          axios.get('/user')
+            .then(response => {
+              console.log(response.data)
+              context.commit('getUserData', response.data)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+        },
+
+        setFavoriteTeam(context, data) {
+            return new Promise((resolve, reject) => {
+                axios.post('/set-favorite-team', {
+                    favorite_team: data.favoriteTeam,
+                })
+                    .then(response => {
+                      console.log(data.favoriteTeam)
+                      context.commit('changeFavoriteTeam', data.favoriteTeam)
                     })
                     .catch(error => {
                         reject(error)

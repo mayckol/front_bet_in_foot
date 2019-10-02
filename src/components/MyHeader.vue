@@ -1,5 +1,9 @@
 <template>
-  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-custom" style="height: 100px">
+  <nav v-if="this.$store.state.userData.team_id" class="navbar navbar-expand-lg sticky-top navbar-dark bg-custom" style="height: 100px">
+    <slot></slot>
+    <img src="../../static/logo1.png" class="img-fluid">
+  </nav>
+  <nav v-else class="navbar navbar-expand-lg sticky-top navbar-dark bg-custom" style="height: 100px">
     <slot></slot>
     <img src="../../static/logo1.png" class="img-fluid">
   </nav>
@@ -7,7 +11,17 @@
 
 <script>
     export default {
-        name: "MyHeader"
+        name: "MyHeader",
+        computed: {
+            teamColors() {
+                switch (this.$store.state.userData.team_id) {
+                    case 13:
+                        return ['black', 'red']
+                        break
+
+                }
+            }
+        }
     }
 </script>
 
@@ -30,6 +44,7 @@
     background-color: #001003;
     height: 100px;
   }
+
   .img-fluid {
     max-width: 100%;
     width: 100px;
