@@ -14,10 +14,10 @@
                         </a>
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="#quem" style="color: white; font-size: 18px">O que somos</a>
+                                <a class="nav-link" href="#quem" style="color: white; font-size: 18px"><span class="custon-span">O que somos</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#como" style="color: white; font-size: 18px">Como apostar</a>
+                                <a class="nav-link" href="#como" style="color: white; font-size: 18px"><span class="custon-span">Como apostar</span></a>
                             </li>
                         </ul>
                     </div>

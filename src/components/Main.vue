@@ -12,23 +12,16 @@
             <img src="../../static/logo5.png" width="170" height="50" alt="" style="margin-right: 50px">
           </a>
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
             <li class="nav-item">
-              <a class="nav-link" href="#quem" style="color: white; font-size: 18px">O que somos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#como" style="color: white; font-size: 18px">Como apostar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" style="color: white; font-size: 18px" v-if="this.$store.state.userData.permission === 1">Usuário</a>
+              <span class="nav-link active" style="padding: 10px" v-if="this.$store.state.userData.permission === 1">Usuário</span>
               <a class="nav-link active" style="color: white; font-size: 18px" v-else-if="this.$store.state.userData.permission === 4">Usuário PRO</a>
               <a class="nav-link active" style="color: white; font-size: 18px" v-else>ADM</a>
             </li>
           </ul>
           <a class="navbar-dark" href="/">
-            <router-link v-if="loggedIn" style="margin-right: 50px" :to="{ name: 'logout' }">Logout
+            <router-link v-if="loggedIn" :to="{ name: 'logout' }"><span style="padding: 10px">Logout</span>
             </router-link>
-            <router-link v-else="loggedIn" style="margin-right: 50px" :to="{ name: 'Login' }">Login
+            <router-link v-else="loggedIn" :to="{ name: 'Login' }">Login
             </router-link>
           </a>
         </div>
@@ -220,7 +213,7 @@
     color: white;
     text-decoration: none;
   }
-  .navbar-dark a:hover {
+  .custon-span:hover {
     background-color: #22253b;
     border-radius: 10px;
   }

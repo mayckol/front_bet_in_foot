@@ -1,7 +1,7 @@
 <template>
   <nav v-if="this.$store.state.userData.team_id" class="navbar navbar-expand-lg sticky-top navbar-dark bg-custom" style="height: 100px">
     <slot></slot>
-    <img src="../../static/logo1.png" class="img-fluid">
+    <img style="margin-left: 20px" src="../../static/logo1.png" class="img-fluid">
   </nav>
   <nav v-else class="navbar navbar-expand-lg sticky-top navbar-dark bg-custom" style="height: 100px">
     <slot></slot>
