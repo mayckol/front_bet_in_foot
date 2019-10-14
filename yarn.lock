@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@jeremyhamm/vue-slider@^0.1.16":
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/@jeremyhamm/vue-slider/-/vue-slider-0.1.16.tgz#5993c1b13317577d6a2538beca2d150f4ac73183"
+  integrity sha512-K1xTpqC6zdMdum/XWGSdUmRfNDq9Wgo4+gj9ww31qjG4mECVlJMdEQP9KMs9yQMmClCAXexdfgxaSqdLQKSmnw==
+
 "@types/q@^1.5.1":
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"

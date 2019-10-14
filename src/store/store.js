@@ -18,6 +18,9 @@ export const store = new Vuex.Store({
         loggedIn(state) {
             return state.token !== null
         },
+        userName(state){
+            return state.userData.name
+        },
         teamsFiltered(state) {
           if (state.filter === 'all') {
             return state.teams

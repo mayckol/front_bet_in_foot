@@ -88,7 +88,7 @@
                     {
                         visitingTeam: 'Internacional',
                         homeTeam: 'CSA',
-                        description: 'QUA 09/10/2019 REI PELÉ 19:15\n'
+                        description: 'QUA 09/10/2019 REI PELÉ 19:15'
                     },
                     {
                         visitingTeam: 'Chapecoense',
