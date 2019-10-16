@@ -87,7 +87,7 @@
         <div class="row text-center border-all p-3 row-hover">
             <div class="col-2"><p>Jogo 5</p></div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam5" class="form-control">
+                <select style="margin-bottom: 15px" v-model="sendingTeam5" class="form-control">
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
                         {{ team.name }}
                     </option>
@@ -132,7 +132,23 @@
         },
         methods: {
             registerMatches() {
-                console.log()
+                const teams = [
+                    {teamA: this.visitingTeam1, teamB: this.sendingTeam1},
+                    {teamA:this.visitingTeam2, teamB: this.sendingTeam2},
+                    {teamA:this.visitingTeam3, teamB: this.sendingTeam3},
+                    {teamA:this.visitingTeam4, teamB: this.sendingTeam4},
+                    {teamA:this.visitingTeam5, teamB: this.sendingTeam5},
+                ]
+                this.$store.dispatch('setMatches', {
+                    teams
+                }).then(response => {
+                    console.log(response)
+                }).catch(error => {
+                    console.log(error)
+                    this.serverError = error.response.data
+                    this.password = ''
+                    this.successMessage = ''
+                })
             }
         },
         created() {

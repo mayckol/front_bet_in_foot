@@ -43,8 +43,8 @@
             },
         },
         created() {
-            this.$store.dispatch('getUserData')
-        }
+            this.$store.dispatch('getMatches')
+        },
     }
 </script>
 

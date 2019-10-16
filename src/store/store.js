@@ -13,6 +13,7 @@ export const store = new Vuex.Store({
         filter: 'all',
         userData: {},
         teams: [],
+        matches: [],
     },
     getters: {
         loggedIn(state) {
@@ -54,8 +55,14 @@ export const store = new Vuex.Store({
         changeFavoriteTeam(state, team){
             state.favoriteTeam = team
         },
+        setMatches(state, matches){
+            state.matches = matches
+        },
         getTeams(state, teams) {
           state.teams = teams
+        },
+        getMatches(state, matches) {
+          state.matches = matches
         },
         getUserData(state, userData) {
           state.userData = userData
@@ -133,6 +140,18 @@ export const store = new Vuex.Store({
             })
         },
 
+        getMatches(context) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+
+          axios.get('/matches')
+            .then(response => {
+              context.commit('getMatches', response.data)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+        },
+
         getUserData(context) {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
 
@@ -154,6 +173,20 @@ export const store = new Vuex.Store({
                     .then(response => {
                       console.log(data.favoriteTeam)
                       context.commit('changeFavoriteTeam', data.favoriteTeam)
+                    })
+                    .catch(error => {
+                        reject(error)
+                    })
+            })
+        },
+        setMatches(context, data) {
+            return new Promise((resolve, reject) => {
+                axios.post('/matches', {
+                    maches: data,
+                })
+                    .then(response => {
+                      console.log(data)
+                      context.commit('setMatches', data)
                     })
                     .catch(error => {
                         reject(error)

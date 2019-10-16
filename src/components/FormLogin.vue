@@ -42,11 +42,11 @@
                     username: this.username,
                     password: this.password,
                 }).then(response => {
-                    if (response.data.permission === 4 || response.data.permission === 1) {
-                        this.$router.push({name: 'Main'})
-                    } else {
+                    // if (response.data.permission === 4 || response.data.permission === 1) {
                         this.$router.push({name: 'Adm'})
-                    }
+                    // } else {
+                    //     this.$router.push({name: 'Adm'})
+                    // }
                 }).catch(error => {
                     console.log(error)
                     this.serverError = error.response.data
