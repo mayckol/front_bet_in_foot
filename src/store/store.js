@@ -19,22 +19,27 @@ export const store = new Vuex.Store({
         loggedIn(state) {
             return state.token !== null
         },
-        userName(state){
+        userName(state) {
             return state.userData.name
         },
         teamsFiltered(state) {
-          if (state.filter === 'all') {
-            return state.teams
-          } /*else if (state.filter == 'active') {
+            if (state.filter === 'all') {
+                return state.teams
+            } /*else if (state.filter == 'active') {
             return state.teams.filter(todo => !team.completed)
           } else if (state.filter == 'completed') {
             return state.teams.filter(team => team.completed)
           }*/
-          return state.teams
+            return state.teams
         },
-        favoriteTeam(state){
-          return state.userData
+        favoriteTeam(state) {
+            return state.userData
+        },
+
+        filterTeams(state){
+            return state.teams
         }
+
     },
     mutations: {
         changeToRegister: state => {
@@ -52,21 +57,21 @@ export const store = new Vuex.Store({
         clearTodos(state) {
             state.todos = []
         },
-        changeFavoriteTeam(state, team){
+        changeFavoriteTeam(state, team) {
             state.favoriteTeam = team
         },
-        setMatches(state, matches){
+        setMatches(state, matches) {
             state.matches = matches
         },
         getTeams(state, teams) {
-          state.teams = teams
+            state.teams = teams
         },
         getMatches(state, matches) {
-          state.matches = matches
+            state.matches = matches
         },
         getUserData(state, userData) {
-          state.userData = userData
-          state.favoriteTeam = userData.team_id
+            state.userData = userData
+            state.favoriteTeam = userData.team_id
         },
     },
     actions: {
@@ -129,40 +134,40 @@ export const store = new Vuex.Store({
         },
 
         getTeams(context) {
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
 
-          axios.get('/teams')
-            .then(response => {
-              context.commit('getTeams', response.data)
-            })
-            .catch(error => {
-              console.log(error)
-            })
+            axios.get('/teams')
+                .then(response => {
+                    context.commit('getTeams', response.data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         },
 
         getMatches(context) {
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
 
-          axios.get('/matches')
-            .then(response => {
-              context.commit('getMatches', response.data)
-            })
-            .catch(error => {
-              console.log(error)
-            })
+            axios.get('/matches')
+                .then(response => {
+                    context.commit('getMatches', response.data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         },
 
         getUserData(context) {
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
 
-          axios.get('/user')
-            .then(response => {
-              console.log(response.data)
-              context.commit('getUserData', response.data)
-            })
-            .catch(error => {
-              console.log(error)
-            })
+            axios.get('/user')
+                .then(response => {
+                    console.log(response.data)
+                    context.commit('getUserData', response.data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         },
 
         setFavoriteTeam(context, data) {
@@ -171,22 +176,23 @@ export const store = new Vuex.Store({
                     favorite_team: data.favoriteTeam,
                 })
                     .then(response => {
-                      console.log(data.favoriteTeam)
-                      context.commit('changeFavoriteTeam', data.favoriteTeam)
+                        console.log(data.favoriteTeam)
+                        context.commit('changeFavoriteTeam', data.favoriteTeam)
                     })
                     .catch(error => {
                         reject(error)
                     })
             })
         },
+
         setMatches(context, data) {
             return new Promise((resolve, reject) => {
-                axios.post('/matches', {
-                    maches: data,
+                axios.post('/set-matches', {
+                    matches: data,
                 })
                     .then(response => {
-                      console.log(data)
-                      context.commit('setMatches', data)
+                        console.log(response)
+                        resolve(response)
                     })
                     .catch(error => {
                         reject(error)

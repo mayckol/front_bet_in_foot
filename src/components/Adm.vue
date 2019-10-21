@@ -29,7 +29,11 @@
                 registerPro: false,
                 navLinks: [
                     {'id': 1, 'text': 'Cadastrar nova rodada', 'url': '#'},
-                    {'id': 2, 'text': 'Habilitar Usuario PRO', 'url': '#'}
+                    {'id': 2, 'text': 'Habilitar Usuario PRO', 'url': '#'},
+                    {'id': 3, 'text': 'Logout', 'url': '/logout'},
+                    /*<router-link v-if="loggedIn" :to="{ name: 'logout' }"><span style="padding: 10px">Logout</span>
+                        </router-link>*/
+
                 ]
             }
         },

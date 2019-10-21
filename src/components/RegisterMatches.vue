@@ -3,22 +3,28 @@
         <div class="row text-center border-all p-3 row-hover">
             <div class="col-2"><p>Jogo 1</p></div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="sendingTeam1" class="form-control">
-                    <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name }}
+                <select @click="addToSelect(sendingTeam1)" style="margin-bottom: 15px" v-model="sendingTeam1"
+                        class="form-control">
+                    <option v-for="(team, index) in teams" :disable="selectedTeam(team.id)"
+                            :value="{ id: team.id, text: team.name }">
+                        {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
             <div class="col-sm-4">
                 <select style="margin-bottom: 15px" v-model="visitingTeam1" class="form-control">
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name }}
+                        {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
-            <div class="col-sm-12">
-                <h5>Descrição</h5>
-                <input type="text">
+            <div class="col-sm-6">
+                <h5>Estádio</h5>
+                <input v-model="stadiumMatch1" type="text">
+            </div>
+            <div class="col-sm-6">
+                <h5>Data</h5>
+                <input v-model="dateMatch1" type="text">
             </div>
         </div>
         <div class="row text-center border-all p-3 row-hover">
@@ -26,20 +32,24 @@
             <div class="col-sm-4">
                 <select style="margin-bottom: 15px" v-model="sendingTeam2" class="form-control">
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name }}
+                        {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
             <div class="col-sm-4">
                 <select style="margin-bottom: 15px" v-model="visitingTeam2" class="form-control">
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name }}
+                        {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
-            <div class="col-sm-12">
-                <h5>Descrição</h5>
-                <input type="text">
+            <div class="col-sm-6">
+                <h5>Estádio</h5>
+                <input v-model="stadiumMatch2" type="text">
+            </div>
+            <div class="col-sm-6">
+                <h5>Data</h5>
+                <input v-model="dateMatch2" type="text">
             </div>
         </div>
         <div class="row text-center border-all p-3 row-hover">
@@ -47,20 +57,24 @@
             <div class="col-sm-4">
                 <select style="margin-bottom: 15px" v-model="sendingTeam3" class="form-control">
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name }}
+                        {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
             <div class="col-sm-4">
                 <select style="margin-bottom: 15px" v-model="visitingTeam3" class="form-control">
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name }}
+                        {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
-            <div class="col-sm-12">
-                <h5>Descrição</h5>
-                <input type="text">
+            <div class="col-sm-6">
+                <h5>Estádio</h5>
+                <input v-model="stadiumMatch3" type="text">
+            </div>
+            <div class="col-sm-6">
+                <h5>Data</h5>
+                <input v-model="dateMatch3" type="text">
             </div>
         </div>
         <div class="row text-center border-all p-3 row-hover">
@@ -68,20 +82,24 @@
             <div class="col-sm-4">
                 <select style="margin-bottom: 15px" v-model="sendingTeam4" class="form-control">
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name }}
+                        {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
             <div class="col-sm-4">
                 <select style="margin-bottom: 15px" v-model="visitingTeam4" class="form-control">
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name }}
+                        {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
-            <div class="col-sm-12">
-                <h5>Descrição</h5>
-                <input type="text">
+            <div class="col-sm-6">
+                <h5>Estádio</h5>
+                <input v-model="stadiumMatch4" type="text">
+            </div>
+            <div class="col-sm-6">
+                <h5>Data</h5>
+                <input v-model="dateMatch4" type="text">
             </div>
         </div>
         <div class="row text-center border-all p-3 row-hover">
@@ -89,20 +107,24 @@
             <div class="col-sm-4">
                 <select style="margin-bottom: 15px" v-model="sendingTeam5" class="form-control">
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name }}
+                        {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
             <div class="col-sm-4">
                 <select style="margin-bottom: 15px" v-model="visitingTeam5" class="form-control">
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name }}
+                        {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
-            <div class="col-sm-12">
-                <h5>Descrição</h5>
-                <input type="text">
+            <div class="col-sm-6">
+                <h5>Estádio</h5>
+                <input v-model="stadiumMatch5" type="text">
+            </div>
+            <div class="col-sm-6">
+                <h5>Data</h5>
+                <input v-model="dateMatch5" type="text">
             </div>
         </div>
         <div class="row pt-3">
@@ -128,19 +150,55 @@
                 visitingTeam3: '',
                 visitingTeam4: '',
                 visitingTeam5: '',
+                stadiumMatch1: '',
+                stadiumMatch2: '',
+                stadiumMatch3: '',
+                stadiumMatch4: '',
+                stadiumMatch5: '',
+                dateMatch1: '',
+                dateMatch2: '',
+                dateMatch3: '',
+                dateMatch4: '',
+                dateMatch5: '',
+                selected: []
             }
         },
         methods: {
             registerMatches() {
                 const teams = [
-                    {teamA: this.visitingTeam1, teamB: this.sendingTeam1},
-                    {teamA:this.visitingTeam2, teamB: this.sendingTeam2},
-                    {teamA:this.visitingTeam3, teamB: this.sendingTeam3},
-                    {teamA:this.visitingTeam4, teamB: this.sendingTeam4},
-                    {teamA:this.visitingTeam5, teamB: this.sendingTeam5},
+                    {
+                        teamA: this.visitingTeam1,
+                        teamB: this.sendingTeam1,
+                        stadium: this.stadiumMatch1,
+                        schedule: this.dateMatch1
+                    },
+                    {
+                        teamA: this.visitingTeam2,
+                        teamB: this.sendingTeam2,
+                        stadium: this.stadiumMatch2,
+                        schedule: this.dateMatch2
+                    },
+                    {
+                        teamA: this.visitingTeam3,
+                        teamB: this.sendingTeam3,
+                        stadium: this.stadiumMatch3,
+                        schedule: this.dateMatch3
+                    },
+                    {
+                        teamA: this.visitingTeam4,
+                        teamB: this.sendingTeam4,
+                        stadium: this.stadiumMatch4,
+                        schedule: this.dateMatch4
+                    },
+                    {
+                        teamA: this.visitingTeam5,
+                        teamB: this.sendingTeam5,
+                        stadium: this.stadiumMatch5,
+                        schedule: this.dateMatch5
+                    },
                 ]
                 this.$store.dispatch('setMatches', {
-                    teams
+                    teams: teams
                 }).then(response => {
                     console.log(response)
                 }).catch(error => {
@@ -149,10 +207,31 @@
                     this.password = ''
                     this.successMessage = ''
                 })
+            },
+            addToSelect(team) {
+                console.log(this.selected)
+                this.selected.push(team.id)
+                console.log(this.selected)
+            },
+            selectedTeam(id) {
+                console.log(this.selected.includes(id))
+                return this.selected.includes(id)
             }
         },
+        filters: {
+            unsetUndefined(value) {
+                if (value !== 'Não tenho time preferido') {
+                    return value
+                }
+            }
+        },
+        computed: {
+            teams() {
+                return this.$store.getters.filterTeams
+            },
+        },
         created() {
-            return this.$store.dispatch('getTeams')
+            this.$store.dispatch('getTeams')
         }
     }
 </script>
