@@ -1,11 +1,11 @@
 <template>
   <div class="row text-center row-hover" style="border: solid 1px white">
     <div class="col-sm-12">
-      <p>{{ departure.description }}</p>
+      <p>{{ departure.stadium }} {{ departure.schedule }}</p>
     </div>
     <div class="col-sm-5">
       <p>
-        {{ departure.homeTeam.substring(0, 3) }}
+        {{ departure.homeTeam.name.substring(0, 3) }}
         <a href=""></a>
         <img :src="`../../static/Times/${ selectedPrefixImgHome }.png`"
              style="max-height: 200px; max-width: 200px" class="img-fluid">
@@ -20,7 +20,7 @@
         <input type="number" min="0" required>
         <img :src="`../../static/Times/${ selectedPrefixImgVisiting }.png`"
              style="max-height: 200px; max-width: 200px" class="img-fluid">
-        {{ departure.visitingTeam.substring(0, 3) }}
+        {{ departure.visitingTeam.name.substring(0, 3) }}
       </p>
     </div>
   </div>
@@ -43,14 +43,14 @@
                 if (!this.departure.homeTeam) {
                     return
                 }
-                return this.departure.homeTeam.replace(/ /g, "").toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+                return this.departure.homeTeam.name.replace(/ /g, "").toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")
             },
             selectedPrefixImgVisiting() {
                 console.log(this.departure.visitingTeam)
                 if (!this.departure.visitingTeam) {
                     return
                 }
-                return this.departure.visitingTeam.replace(/ /g, "").toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+                return this.departure.visitingTeam.name.replace(/ /g, "").toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")
             },
         }
     }

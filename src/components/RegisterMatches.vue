@@ -1,10 +1,10 @@
 <template>
-    <form action="#" @submit.stop.prevent="registerMatches">
+    <form @submit="checkForm" action="#" @submit.stop.prevent="registerMatches">
         <div class="row text-center border-all p-3 row-hover">
             <div class="col-2"><p>Jogo 1</p></div>
             <div class="col-sm-4">
-                <select @click="addToSelect(sendingTeam1)" style="margin-bottom: 15px" v-model="sendingTeam1"
-                        class="form-control">
+                <select style="margin-bottom: 15px" v-model="sendingTeam1"
+                        class="form-control" required>
                     <option v-for="(team, index) in teams" :disable="selectedTeam(team.id)"
                             :value="{ id: team.id, text: team.name }">
                         {{ team.name | unsetUndefined }}
@@ -12,7 +12,7 @@
                 </select>
             </div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam1" class="form-control">
+                <select style="margin-bottom: 15px" v-model="visitingTeam1" class="form-control" required>
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
                         {{ team.name | unsetUndefined }}
                     </option>
@@ -30,14 +30,14 @@
         <div class="row text-center border-all p-3 row-hover">
             <div class="col-2"><p>Jogo 2</p></div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="sendingTeam2" class="form-control">
+                <select style="margin-bottom: 15px" v-model="sendingTeam2" class="form-control" required>
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
                         {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam2" class="form-control">
+                <select style="margin-bottom: 15px" v-model="visitingTeam2" class="form-control" required>
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
                         {{ team.name | unsetUndefined }}
                     </option>
@@ -55,14 +55,14 @@
         <div class="row text-center border-all p-3 row-hover">
             <div class="col-2"><p>Jogo 3</p></div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="sendingTeam3" class="form-control">
+                <select style="margin-bottom: 15px" v-model="sendingTeam3" class="form-control" required>
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
                         {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam3" class="form-control">
+                <select style="margin-bottom: 15px" v-model="visitingTeam3" class="form-control" required>
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
                         {{ team.name | unsetUndefined }}
                     </option>
@@ -80,14 +80,14 @@
         <div class="row text-center border-all p-3 row-hover">
             <div class="col-2"><p>Jogo 4</p></div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="sendingTeam4" class="form-control">
+                <select style="margin-bottom: 15px" v-model="sendingTeam4" class="form-control" required>
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
                         {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam4" class="form-control">
+                <select style="margin-bottom: 15px" v-model="visitingTeam4" class="form-control" required>
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
                         {{ team.name | unsetUndefined }}
                     </option>
@@ -105,14 +105,14 @@
         <div class="row text-center border-all p-3 row-hover">
             <div class="col-2"><p>Jogo 5</p></div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="sendingTeam5" class="form-control">
+                <select style="margin-bottom: 15px" v-model="sendingTeam5" class="form-control" required>
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
                         {{ team.name | unsetUndefined }}
                     </option>
                 </select>
             </div>
             <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam5" class="form-control">
+                <select style="margin-bottom: 15px" v-model="visitingTeam5" class="form-control" required>
                     <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
                         {{ team.name | unsetUndefined }}
                     </option>
@@ -204,8 +204,6 @@
                 }).catch(error => {
                     console.log(error)
                     this.serverError = error.response.data
-                    this.password = ''
-                    this.successMessage = ''
                 })
             },
             addToSelect(team) {
@@ -216,6 +214,31 @@
             selectedTeam(id) {
                 console.log(this.selected.includes(id))
                 return this.selected.includes(id)
+            },
+            checkForm(e) {
+                var counter = 0
+                const validate = [
+                    this.sendingTeam1,
+                    this.sendingTeam2,
+                    this.sendingTeam3,
+                    this.sendingTeam4,
+                    this.sendingTeam5,
+                    this.visitingTeam1,
+                    this.visitingTeam2,
+                    this.visitingTeam3,
+                    this.visitingTeam4,
+                    this.visitingTeam5,
+                ]
+                validate.forEach((item)=>{
+                    for (let i=0; i < validate.length; i++){
+                        if(item.id === validate[i].id){
+                            counter ++
+                        }
+                    }
+                })
+                if (counter === 10) return true
+                alert('Existe um time participando de mais de uma rodada')
+                e.preventDefault();
             }
         },
         filters: {

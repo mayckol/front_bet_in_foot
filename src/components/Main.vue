@@ -1,6 +1,6 @@
 <template>
     <!--000c06-->
-    <div class="main" :style="{ backgroundColor: userPermission !== 7 ? '#000c06' : 'white' }">
+    <div class="main" :style="{ backgroundColor: userPermission !== 7 ? '#000c06' : 'grey' }">
         <my-header v-if="userPermission !== 7">
             <slot>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -65,7 +65,7 @@
                 <h1 style="margin-bottom: 30px">Jogos da rodada para aposta</h1>
                 <div class="container">
                     <form action="#">
-                        <departures v-for="departure in departures" :departure="departure"></departures>
+                        <departures v-for="departure in matches" :departure="departure"></departures>
                         <button type="submit" class="btn btn-black mt-5" style="font-size: 30px">Apostar</button>
                     </form>
                 </div>
@@ -73,7 +73,7 @@
         </div>
         <div v-else>
             <slider :links="navLinks" :width="300" format="overlay" direction="left" :opacity="0.15"></slider>
-            <div class="container text-center">
+            <div class="container text-center pb-5">
                 <div class="row">
                     <div class="col mt-5">
                         <h1>Seja bem vindo {{ user }}</h1>
@@ -82,9 +82,6 @@
                 </div>
                 <div v-if="matchs" class="col">
                     <register-matches></register-matches>
-                </div>
-                <div v-if="registerPro" class="col">
-                    pro
                 </div>
             </div>
         </div>
@@ -170,6 +167,9 @@
             },
             userPermission() {
                 return this.$store.state.userData.permission
+            },
+            matches() {
+                return this.$store.state.matches
             }
         },
         methods: {

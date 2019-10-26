@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 Vue.use(Vuex)
-axios.defaults.baseURL = 'http://www.betinfoot.com/api';
+axios.defaults.baseURL = 'http://betinfoot.tst/api';
 
 export const store = new Vuex.Store({
     state: {
