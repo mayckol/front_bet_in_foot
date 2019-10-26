@@ -1,141 +1,157 @@
 <template>
-    <form @submit="checkForm" action="#" @submit.stop.prevent="registerMatches">
-        <div class="row text-center border-all p-3 row-hover">
-            <div class="col-2"><p>Jogo 1</p></div>
-            <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="sendingTeam1"
-                        class="form-control" required>
-                    <option v-for="(team, index) in teams" :disable="selectedTeam(team.id)"
-                            :value="{ id: team.id, text: team.name }">
-                        {{ team.name | unsetUndefined }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam1" class="form-control" required>
-                    <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name | unsetUndefined }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-sm-6">
-                <h5>Estádio</h5>
-                <input v-model="stadiumMatch1" type="text">
-            </div>
-            <div class="col-sm-6">
-                <h5>Data</h5>
-                <input v-model="dateMatch1" type="text">
-            </div>
+    <div>
+        <slider :links="navLinks" :width="300" format="overlay" direction="left" :opacity="0.15"></slider>
+        <div class="container">
+            <form @submit="checkForm" action="#" @submit.stop.prevent="registerMatches">
+                <div class="row text-center border-all p-3 row-hover">
+                    <div class="col-2"><p>Jogo 1</p></div>
+                    <div class="col-sm-4">
+                        <select style="margin-bottom: 15px" v-model="sendingTeam1"
+                                class="form-control" required>
+                            <option v-for="(team, index) in teams" :disable="selectedTeam(team.id)"
+                                    :value="{ id: team.id, text: team.name }">
+                                {{ team.name | unsetUndefined }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <select style="margin-bottom: 15px" v-model="visitingTeam1" class="form-control" required>
+                            <option v-for="(team, index) in this.$store.state.teams"
+                                    :value="{ id: team.id, text: team.name }">
+                                {{ team.name | unsetUndefined }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Estádio</h5>
+                        <input v-model="stadiumMatch1" type="text" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Data</h5>
+                        <input type="date" masked="true" v-model="dateMatch1" required/>
+                    </div>
+                </div>
+                <div class="row text-center border-all p-3 row-hover">
+                    <div class="col-2"><p>Jogo 2</p></div>
+                    <div class="col-sm-4">
+                        <select style="margin-bottom: 15px" v-model="sendingTeam2" class="form-control" required>
+                            <option v-for="(team, index) in this.$store.state.teams"
+                                    :value="{ id: team.id, text: team.name }">
+                                {{ team.name | unsetUndefined }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <select style="margin-bottom: 15px" v-model="visitingTeam2" class="form-control" required>
+                            <option v-for="(team, index) in this.$store.state.teams"
+                                    :value="{ id: team.id, text: team.name }">
+                                {{ team.name | unsetUndefined }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Estádio</h5>
+                        <input v-model="stadiumMatch2" type="text" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Data</h5>
+                        <input type="date" masked="true" v-model="dateMatch2" required/>
+                    </div>
+                </div>
+                <div class="row text-center border-all p-3 row-hover">
+                    <div class="col-2"><p>Jogo 3</p></div>
+                    <div class="col-sm-4">
+                        <select style="margin-bottom: 15px" v-model="sendingTeam3" class="form-control" required>
+                            <option v-for="(team, index) in this.$store.state.teams"
+                                    :value="{ id: team.id, text: team.name }">
+                                {{ team.name | unsetUndefined }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <select style="margin-bottom: 15px" v-model="visitingTeam3" class="form-control" required>
+                            <option v-for="(team, index) in this.$store.state.teams"
+                                    :value="{ id: team.id, text: team.name }">
+                                {{ team.name | unsetUndefined }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Estádio</h5>
+                        <input v-model="stadiumMatch3" type="text" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Data</h5>
+                        <input type="date" masked="true" v-model="dateMatch3" required/>
+                    </div>
+                </div>
+                <div class="row text-center border-all p-3 row-hover">
+                    <div class="col-2"><p>Jogo 4</p></div>
+                    <div class="col-sm-4">
+                        <select style="margin-bottom: 15px" v-model="sendingTeam4" class="form-control" required>
+                            <option v-for="(team, index) in this.$store.state.teams"
+                                    :value="{ id: team.id, text: team.name }">
+                                {{ team.name | unsetUndefined }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <select style="margin-bottom: 15px" v-model="visitingTeam4" class="form-control" required>
+                            <option v-for="(team, index) in this.$store.state.teams"
+                                    :value="{ id: team.id, text: team.name }">
+                                {{ team.name | unsetUndefined }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Estádio</h5>
+                        <input v-model="stadiumMatch4" type="text" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Data</h5>
+                        <input type="date" masked="true" v-model="dateMatch4" required/>
+                    </div>
+                </div>
+                <div class="row text-center border-all p-3 row-hover">
+                    <div class="col-2"><p>Jogo 5</p></div>
+                    <div class="col-sm-4">
+                        <select style="margin-bottom: 15px" v-model="sendingTeam5" class="form-control" required>
+                            <option v-for="(team, index) in this.$store.state.teams"
+                                    :value="{ id: team.id, text: team.name }">
+                                {{ team.name | unsetUndefined }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <select style="margin-bottom: 15px" v-model="visitingTeam5" class="form-control" required>
+                            <option v-for="(team, index) in this.$store.state.teams"
+                                    :value="{ id: team.id, text: team.name }">
+                                {{ team.name | unsetUndefined }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Estádio</h5>
+                        <input v-model="stadiumMatch5" type="text" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>Data</h5>
+                        <input type="date" masked="true" v-model="dateMatch5" required/>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-sm-12 text-right">
+                        <button class="btn btn-success" type="submit">Cadastrar</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="row text-center border-all p-3 row-hover">
-            <div class="col-2"><p>Jogo 2</p></div>
-            <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="sendingTeam2" class="form-control" required>
-                    <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name | unsetUndefined }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam2" class="form-control" required>
-                    <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name | unsetUndefined }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-sm-6">
-                <h5>Estádio</h5>
-                <input v-model="stadiumMatch2" type="text">
-            </div>
-            <div class="col-sm-6">
-                <h5>Data</h5>
-                <input v-model="dateMatch2" type="text">
-            </div>
-        </div>
-        <div class="row text-center border-all p-3 row-hover">
-            <div class="col-2"><p>Jogo 3</p></div>
-            <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="sendingTeam3" class="form-control" required>
-                    <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name | unsetUndefined }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam3" class="form-control" required>
-                    <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name | unsetUndefined }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-sm-6">
-                <h5>Estádio</h5>
-                <input v-model="stadiumMatch3" type="text">
-            </div>
-            <div class="col-sm-6">
-                <h5>Data</h5>
-                <input v-model="dateMatch3" type="text">
-            </div>
-        </div>
-        <div class="row text-center border-all p-3 row-hover">
-            <div class="col-2"><p>Jogo 4</p></div>
-            <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="sendingTeam4" class="form-control" required>
-                    <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name | unsetUndefined }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam4" class="form-control" required>
-                    <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name | unsetUndefined }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-sm-6">
-                <h5>Estádio</h5>
-                <input v-model="stadiumMatch4" type="text">
-            </div>
-            <div class="col-sm-6">
-                <h5>Data</h5>
-                <input v-model="dateMatch4" type="text">
-            </div>
-        </div>
-        <div class="row text-center border-all p-3 row-hover">
-            <div class="col-2"><p>Jogo 5</p></div>
-            <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="sendingTeam5" class="form-control" required>
-                    <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name | unsetUndefined }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-sm-4">
-                <select style="margin-bottom: 15px" v-model="visitingTeam5" class="form-control" required>
-                    <option v-for="(team, index) in this.$store.state.teams" :value="{ id: team.id, text: team.name }">
-                        {{ team.name | unsetUndefined }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-sm-6">
-                <h5>Estádio</h5>
-                <input v-model="stadiumMatch5" type="text">
-            </div>
-            <div class="col-sm-6">
-                <h5>Data</h5>
-                <input v-model="dateMatch5" type="text">
-            </div>
-        </div>
-        <div class="row pt-3">
-            <div class="col-sm-12 text-right">
-                <button class="btn btn-success" type="submit">Cadastrar</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </template>
 
 <script>
+    import Slider from '@jeremyhamm/vue-slider'
+
     export default {
         name: "RegisterMatches",
         data() {
@@ -160,7 +176,12 @@
                 dateMatch3: '',
                 dateMatch4: '',
                 dateMatch5: '',
-                selected: []
+                selected: [],
+                navLinks: [
+                    {'id': 1, 'text': 'Início', 'url': '/home'},
+                    {'id': 2, 'text': 'Permissão de usuários', 'url': '/permissions'},
+                    {'id': 3, 'text': 'Logout', 'url': '/logout'}
+                ],
             }
         },
         methods: {
@@ -200,7 +221,7 @@
                 this.$store.dispatch('setMatches', {
                     teams: teams
                 }).then(response => {
-                    console.log(response)
+                    alert('Ótimo você cadastrou as partidas da próxima rodada')
                 }).catch(error => {
                     console.log(error)
                     this.serverError = error.response.data
@@ -229,10 +250,10 @@
                     this.visitingTeam4,
                     this.visitingTeam5,
                 ]
-                validate.forEach((item)=>{
-                    for (let i=0; i < validate.length; i++){
-                        if(item.id === validate[i].id){
-                            counter ++
+                validate.forEach((item) => {
+                    for (let i = 0; i < validate.length; i++) {
+                        if (item.id === validate[i].id) {
+                            counter++
                         }
                     }
                 })
@@ -240,6 +261,9 @@
                 alert('Existe um time participando de mais de uma rodada')
                 e.preventDefault();
             }
+        },
+        components: {
+            Slider
         },
         filters: {
             unsetUndefined(value) {
@@ -260,6 +284,10 @@
 </script>
 
 <style scoped>
+
+    body {
+        background-color: grey;
+    }
 
     .border-all {
         border: 1px solid black;

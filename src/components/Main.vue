@@ -127,14 +127,15 @@
                         description: 'QUA 09/10/2019 FONTE NOVA 21:00'
                     },
                 ],
-                matchs: true,
+                matchs: false,
                 registerPro: false,
                 navLinks: [
-                    {'id': 1, 'text': 'Cadastrar nova rodada', 'url': '#'},
-                    {'id': 2, 'text': 'Habilitar Usuario PRO', 'url': '#'},
+                    {'id': 1, 'text': 'Cadastrar nova rodada', 'url': '/register-matches'},
+                    {'id': 2, 'text': 'Permissão de usuários', 'url': '/permissions'},
                     {'id': 3, 'text': 'Logout', 'url': '/logout'}
                 ],
-
+                /*<router-link v-if="loggedIn" :to="{ name: 'logout' }"><span style="padding: 10px">Logout</span>
+                                        </router-link>*/
             }
         },
         components: {
@@ -185,7 +186,6 @@
                         }).catch(error => {
                             console.log(error)
                             this.serverError = error.response.data
-                            this.password = ''
                             this.successMessage = ''
                         })
                     }

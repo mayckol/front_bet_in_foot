@@ -39,7 +39,6 @@
         },
         computed: {
             selectedPrefixImgHome() {
-                console.log(this.departure.homeTeam)
                 if (!this.departure.homeTeam) {
                     return
                 }

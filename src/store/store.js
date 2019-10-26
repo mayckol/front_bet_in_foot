@@ -13,6 +13,7 @@ export const store = new Vuex.Store({
         filter: 'all',
         userData: {},
         teams: [],
+        users: [],
         matches: [],
     },
     getters: {
@@ -36,7 +37,7 @@ export const store = new Vuex.Store({
             return state.userData
         },
 
-        filterTeams(state){
+        filterTeams(state) {
             return state.teams
         }
 
@@ -65,6 +66,9 @@ export const store = new Vuex.Store({
         },
         getTeams(state, teams) {
             state.teams = teams
+        },
+        getUsers(state, users) {
+            state.users = users
         },
         getMatches(state, matches) {
             state.matches = matches
@@ -145,6 +149,18 @@ export const store = new Vuex.Store({
                 })
         },
 
+        getUsers(context) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+
+            axios.get('/users')
+                .then(response => {
+                    context.commit('getUsers', response.data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+
         getMatches(context) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
 
@@ -178,6 +194,23 @@ export const store = new Vuex.Store({
                     .then(response => {
                         console.log(data.favoriteTeam)
                         context.commit('changeFavoriteTeam', data.favoriteTeam)
+                    })
+                    .catch(error => {
+                        reject(error)
+                    })
+            })
+        },
+
+        updatePermissions(context, data) {
+            return new Promise((resolve, reject) => {
+                console.log(data)
+                axios.post('/update-permission', {
+                    userId: data.userId,
+                    userPermission: data.userPermission,
+                })
+                    .then(response => {
+                        console.log(response)
+                        resolve(response)
                     })
                     .catch(error => {
                         reject(error)
