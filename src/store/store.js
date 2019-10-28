@@ -15,6 +15,7 @@ export const store = new Vuex.Store({
         teams: [],
         users: [],
         matches: [],
+        lastMatches: [],
     },
     getters: {
         loggedIn(state) {
@@ -72,6 +73,9 @@ export const store = new Vuex.Store({
         },
         getMatches(state, matches) {
             state.matches = matches
+        },
+        lastMatches(state, matches) {
+            state.lastMatches = matches
         },
         getUserData(state, userData) {
             state.userData = userData
@@ -226,6 +230,20 @@ export const store = new Vuex.Store({
                     .then(response => {
                         console.log(response)
                         resolve(response)
+                    })
+                    .catch(error => {
+                        reject(error)
+                    })
+            })
+        },
+
+        getLastMatches(context, data) {
+            return new Promise((resolve, reject) => {
+                axios.post('/get-last-matches', {
+                    teamId: data.teamId,
+                })
+                    .then(response => {
+                        context.commit('lastMatches', response.data)
                     })
                     .catch(error => {
                         reject(error)

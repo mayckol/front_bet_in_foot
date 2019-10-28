@@ -222,6 +222,7 @@
                     teams: teams
                 }).then(response => {
                     alert('Ótimo você cadastrou as partidas da próxima rodada')
+                    this.$router.push({name: 'Main'})
                 }).catch(error => {
                     console.log(error)
                     this.serverError = error.response.data
